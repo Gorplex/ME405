@@ -8,7 +8,7 @@ import pyb
 class MotorDriver:
     ''' This is a motor driver class for an Hbridge'''
     
-    def __init__ (self, pin1=pyb.Pin.board.PB4, \
+    def __init__(self, pin1=pyb.Pin.board.PB4, \
                     pin2=pyb.Pin.board.PB5, \
                     enPin = pyb.Pin.board.PA10):
         ''' Creates a motor driver using pin1, pin2, and an enable pin.
@@ -40,29 +40,41 @@ class MotorDriver:
         else:
             self.__ch2.pulse_width_percent(-1*level)
             self.__ch1.pulse_width_percent(0)
-            
+    
+    def __repr__(self):    
+	return "CH1: "+str(self.__ch1)+"\nCH2: "+str(self.__ch2)	
+
+
+        
 def test_all():
-    '''runs through simple tests '''    
+    '''runs through all simple tests '''    
     from time import sleep
     print('start test')
     moe = MotorDriver ()
-    sleep(1)
-    print('backwards 50')
-    moe.set_duty_cycle (-50)
-    sleep(1)
-    print('backwards 100')
-    moe.set_duty_cycle (-100)
-    sleep(1)
-    print('stop')
-    moe.set_duty_cycle (0)
-    sleep(1)
-    print('forward 50')
-    moe.set_duty_cycle (50)
-    sleep(1)
-    print('forward 100')
-    moe.set_duty_cycle (100)
-    sleep(1)
-    print('stop')
-    moe.set_duty_cycle (0)
-    sleep(1)
-    print('end')  
+    i=5
+    while i > 0:
+    	i-=1
+	sleep(1)
+    	print('backwards 50')
+    	moe.set_duty_cycle (-50)
+    	sleep(1)
+    	print('backwards 100')
+    	moe.set_duty_cycle (-100)
+    	sleep(1)
+    	print('stop')
+    	moe.set_duty_cycle (0)
+    	sleep(1)
+    	print('forward 50')
+	moe.set_duty_cycle (50)
+	sleep(1)
+	print('forward 100')
+	moe.set_duty_cycle (100)
+	sleep(1)
+	print('stop')
+	moe.set_duty_cycle (0)
+	sleep(1)
+	print('end') 
+
+
+
+ 
